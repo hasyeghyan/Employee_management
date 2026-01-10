@@ -71,9 +71,9 @@ project-root/
 ## 4. Build & Run Instructions
 
 ### Using Makefile
-make         # Compile the project
-./app        # Run the program
-make clean   # Optional: remove object files and executable
+make         # Compile the project  
+./app        # Run the program  
+make clean   # Optional: remove object files and executable  
 
 ## 5. SOLID Explanation
 
