@@ -11,7 +11,7 @@ class President : public Employee {
         President(const std::string& n) : Employee(n) {}
         virtual ~President() = default;
 
-        virtual void print() override;
+        virtual void getInfo() override;
 };
 
 #endif

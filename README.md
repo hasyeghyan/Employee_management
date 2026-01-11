@@ -1,4 +1,3 @@
-
 # Employee Management System (EMS)
 
 ## 1. Project Overview

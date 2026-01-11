@@ -11,7 +11,7 @@ class SalesPerson : public Employee, public ISalary {
         SalesPerson(const std::string& n, double s = 0) : Employee(n), salary{s} {}
         virtual ~SalesPerson() = default;
 
-        virtual void print() override { std::cout << "ID is " << id << ", Name is " << name << ", Role is SalesPerson " << ", Salary is " << salary << std::endl; }
+        virtual void getInfo() override;
 
         virtual void calcSalary() override;
     private:

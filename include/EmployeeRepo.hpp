@@ -15,7 +15,7 @@ class EmployeeRepo {
         
         void list();
 
-        std::vector<std::shared_ptr<Employee>> getEmployees() const noexcept { return employees; }
+        const std::vector<std::shared_ptr<Employee>>& getEmployees() const noexcept { return employees; }
 };
 
 #endif

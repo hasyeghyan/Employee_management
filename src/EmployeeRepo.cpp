@@ -15,7 +15,7 @@ void EmployeeRepo::removeEmployee(size_t index) {
 
 void EmployeeRepo::list() {
     for (size_t i{}; i < employees.size(); ++i) {
-        employees[i]->print();
+        employees[i]->getInfo();
     }
 }
 

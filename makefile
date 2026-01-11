@@ -1,32 +1,27 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -Iinclude
 
 TARGET = app
 
 SRCS = \
-	main.cpp \
-	Accountant.cpp \
-	Developer.cpp \
-	Manager.cpp \
-	President.cpp \
-	SalesPerson.cpp \
-	Employee.cpp \
-	EmployeeRepo.cpp \
-	PayrollService.cpp
+	src/main.cpp \
+	src/Accountant.cpp \
+	src/Developer.cpp \
+	src/Manager.cpp \
+	src/President.cpp \
+	src/SalesPerson.cpp \
+	src/EmployeeRepo.cpp \
+	src/PayrollService.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-# Default rule
 all: $(TARGET)
 
-# Link step
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
-# Compile step
-%.o: %.cpp
+src/%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean rule
 clean:
 	rm -f $(OBJS) $(TARGET)

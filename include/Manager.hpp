@@ -10,7 +10,7 @@ class Manager : public Employee, public ISalary {
         Manager(const std::string& n, double s = 0) : Employee(n), salary{s} {}
         virtual ~Manager() = default;
 
-        virtual void print() override { std::cout << "ID is " << id << ", Name is " << name << ", Role is Manager "  << ", Salary is " << salary <<  std::endl; }
+        virtual void getInfo() override;
 
         virtual void calcSalary() override;
     private:
