@@ -46,7 +46,7 @@ Payroll Behavior:
 - Salaries calculated only for ISalary implementers
 - PayrollService iterates all employees automatically
 - Non-salaried employees are skipped without checks
-```
+
 
 📂 Project Structure
 ```
@@ -77,24 +77,26 @@ project-root/
 ```
 
 🔧 Build & Run
-```
+
 Requirements:
+```
 - g++ (C++17 or higher)
 - make
 ```
 
-```
 Compile:
+```
 make
 ```
 
-```
+
 Run:
+```
 ./app
 ```
 
-```
 Clean:
+```
 make clean
 ```
 
@@ -125,10 +127,10 @@ EmployeeRepo:
 PayrollService:
 - Iterates over all employees
 - Calls calcSalary() only on ISalary implementers
-```
+
 
 🧠 Design Decisions
-```
+
 Why Employee is abstract:
 - Represents generic employee concept
 - Prevents creating meaningless generic employees
