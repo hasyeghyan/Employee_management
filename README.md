@@ -35,12 +35,12 @@ Dependency Inversion Principle:
 
 ✨ Features
 
-Employee Roles:
-💼 Accountant    → Salaried
-💻 Developer     → Salaried
-📊 Manager       → Salaried
-📈 SalesPerson   → Salaried
-👑 President     → Not salaried
+Employee Roles:  
+💼 Accountant    → Salaried   
+💻 Developer     → Salaried   
+📊 Manager       → Salaried   
+📈 SalesPerson   → Salaried   
+👑 President     → Not salaried   
 
 Payroll Behavior:
 - Salaries calculated only for ISalary implementers
