@@ -110,8 +110,8 @@ ISalary (Interface):
 - Declares calcSalary()
 - Implemented only by salaried roles
 
-Derived Employee Classes:
-Salaried:
+Derived Employee Classes:  
+Salaried:  
 💼 Accountant  
 💻 Developer  
 📊 Manager   
