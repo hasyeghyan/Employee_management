@@ -112,10 +112,10 @@ ISalary (Interface):
 
 Derived Employee Classes:
 Salaried:
-💼 Accountant
-💻 Developer
-📊 Manager
-📈 SalesPerson
+💼 Accountant  
+💻 Developer  
+📊 Manager   
+📈 SalesPerson  
 
 Not salaried:
 👑 President
