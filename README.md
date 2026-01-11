@@ -1,111 +1,162 @@
-# Employee Management System (EMS)
+🏢 Employee Management System (EMS)
 
-## 1. Project Overview
-The Employee Management System (EMS) is a C++ project that manages employees of a company.  
-It allows adding employees,removing employees and calculating salaries for roles that are paid, and listing employee information.  
+A C++ Employee Management System demonstrating SOLID principles, modular design, and clean OOP.
+Manage employees, calculate salaries for paid roles, and extend the system easily without modifying existing code.
 
-The project follows **SOLID principles**:  
-- **Single Responsibility**: Each class has a clear responsibility (Employee holds identity, PayrollService calculates salaries, EmployeeRepo manages employees).  
-- **Open/Closed**: Adding a new employee role does not require modifying existing code.  
-- **Liskov Substitution**: Derived classes can be used wherever their base class (`Employee` or `ISalary`) is expected.  
-- **Interface Segregation**: Only employees that have salaries implement the `ISalary` interface.  
-- **Dependency Inversion**: PayrollService depends on abstractions (`Employee` and `ISalary`) rather than concrete classes.  
+📌 Overview
 
----
+The EMS project allows you to:
 
-## 2. Features
+- Add, remove, and list employees
+- Store employee data efficiently
+- Calculate salaries only for paid roles
+- Showcase SOLID principles in real C++ code
 
-### Employee Roles
-- **Accountant** – Salaried  
-- **Developer** – Salaried  
-- **Manager** – Salaried  
-- **SalesPerson** – Salaried  
-- **President** – Not salaried  
+The design emphasizes extensibility, clean abstractions, and separation of concerns.
 
-### Payroll Behavior
-- Only employees that implement the `ISalary` interface have their salary calculated.  
-- PayrollService iterates over all employees and calls `calcSalary()` on salaried employees.  
-- Roles without salary (e.g., President) are skipped automatically without special checks.  
+🧱 SOLID Principles
 
----
+Single Responsibility Principle:
+- Employee → holds id & name
+- EmployeeRepo → manages employees
+- PayrollService → calculates salaries
 
-## 3. Project Structure
+Open / Closed Principle:
+- Add new employee roles without modifying existing code
+
+Liskov Substitution Principle:
+- Derived employee types can replace Employee anywhere
+
+Interface Segregation Principle:
+- Only salaried employees implement ISalary
+
+Dependency Inversion Principle:
+- PayrollService depends on abstractions (Employee, ISalary)
+
+✨ Features
+
+Employee Roles:
+💼 Accountant    → Salaried
+💻 Developer     → Salaried
+📊 Manager       → Salaried
+📈 SalesPerson   → Salaried
+👑 President     → Not salaried
+
+Payroll Behavior:
+- Salaries calculated only for ISalary implementers
+- PayrollService iterates all employees automatically
+- Non-salaried employees are skipped without checks
+```
+
+📂 Project Structure
+```
 project-root/
+├── include/                # Header files (.hpp)
+│   ├── Employee.hpp
+│   ├── ISalary.hpp
+│   ├── Accountant.hpp
+│   ├── Developer.hpp
+│   ├── Manager.hpp
+│   ├── SalesPerson.hpp
+│   ├── President.hpp
+│   ├── EmployeeRepo.hpp
+│   └── PayrollService.hpp
 │
-├─ include/ # All header files (.hpp)
-│ ├─ Employee.hpp
-│ ├─ ISalary.hpp
-│ ├─ Accountant.hpp
-│ ├─ Developer.hpp
-│ ├─ Manager.hpp
-│ ├─ SalesPerson.hpp
-│ ├─ President.hpp
-│ ├─ EmployeeRepo.hpp
-│ └─ PayrollService.hpp
+├── src/                    # Source files (.cpp)
+│   ├── main.cpp
+│   ├── Accountant.cpp
+│   ├── Developer.cpp
+│   ├── Manager.cpp
+│   ├── SalesPerson.cpp
+│   ├── President.cpp
+│   ├── EmployeeRepo.cpp
+│   └── PayrollService.cpp
 │
-├─ src/ # All implementation files (.cpp)
-│ ├─ main.cpp
-│ ├─ Accountant.cpp
-│ ├─ Developer.cpp
-│ ├─ Manager.cpp
-│ ├─ SalesPerson.cpp
-│ ├─ President.cpp
-│ ├─ EmployeeRepo.cpp
-│ ├─ PayrollService.cpp
-│ └─ Employee.cpp (optional)
-│
-├─ Makefile
-└─ README.md
+├── Makefile
+└── README.md
+```
 
+🔧 Build & Run
+```
+Requirements:
+- g++ (C++17 or higher)
+- make
+```
 
-### Main Components
-- **Employee (abstract)** – Base class holding `id` and `name`. Cannot be instantiated directly.  
-- **ISalary (interface)** – Declares `calcSalary()` for salaried employees only.  
-- **Derived Employee Classes** – Accountant, Developer, Manager, SalesPerson (salaried); President (not salaried).  
-- **EmployeeRepo** – Stores and manages all employees.  
-- **PayrollService** – Calculates salaries for all salaried employees using `ISalary`.  
+```
+Compile:
+make
+```
 
----
+```
+Run:
+./app
+```
 
-## 4. Build & Run Instructions
+```
+Clean:
+make clean
+```
 
-### Using Makefile
-make         # Compile the project  
-./app        # Run the program  
-make clean   # Optional: remove object files and executable  
+🧩 Main Components
 
-## 5. SOLID Explanation
+Employee (Abstract Base Class):
+- Holds common employee data (id, name)
+- Cannot be instantiated directly
 
+ISalary (Interface):
+- Declares calcSalary()
+- Implemented only by salaried roles
+
+Derived Employee Classes:
+Salaried:
+💼 Accountant
+💻 Developer
+📊 Manager
+📈 SalesPerson
+
+Not salaried:
+👑 President
+
+EmployeeRepo:
+- Stores employees polymorphically
+- Supports add / remove / list
+
+PayrollService:
+- Iterates over all employees
+- Calls calcSalary() only on ISalary implementers
+```
+
+🧠 Design Decisions
+```
 Why Employee is abstract:
+- Represents generic employee concept
+- Prevents creating meaningless generic employees
 
-Employee is abstract because it represents a generic concept of an employee.
+Why ISalary exists:
+- Not all roles are salaried
+- Avoids forcing unpaid roles to implement unused functions
 
-We don’t want to create a generic employee without a specific role.
+Handling unpaid roles:
+- Roles without salary do not implement ISalary
+- No extra checks in PayrollService
 
-Why salary logic is in a separate interface (ISalary):
+Adding new roles:
+1. Derive from Employee
+2. Implement ISalary only if salaried
 
-Not all roles receive a salary (e.g., President).
+No changes needed in PayrollService, EmployeeRepo, or main.
 
-Separating salary logic avoids forcing non-salaried roles to implement unnecessary functions.
 
-Salaried roles implement the interface, keeping the design clean and modular.
+🚀 Example Usage
+```cpp
+EmployeeRepo repo;
 
-How unpaid roles are handled:
+repo.add(std::make_shared<Developer>(1, "Alice"));
+repo.add(std::make_shared<President>(2, "Bob"));
 
-Roles without salary simply don’t implement ISalary.
+PayrollService payroll;
+payroll.process(repo.getAll());
+```
 
-PayrollService uses dynamic_cast to safely call calcSalary() only on salaried employees.
 
-How PayrollService avoids role checks:
-
-It does not need to know which role is salaried.
-
-Using dynamic_cast to ISalary* automatically filters only employees with salary behavior.
-
-How adding a new role does not break existing code:
-
-To add a new role: create a derived class of Employee.
-
-Implement ISalary only if the role is salaried.
-
-No existing code (EmployeeRepo, PayrollService, main) needs to change. 
